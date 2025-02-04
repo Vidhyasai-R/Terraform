@@ -1,7 +1,6 @@
 resource "aws_security_group" "security_group" {
-    name = "Allow-All"
-    description = "Allow the traffic"
-
+    name = "allow-all"
+    description = "Allow all traffic"
     dynamic "ingress" {
         for_each = var.ingress_ports
         content{
@@ -12,22 +11,22 @@ resource "aws_security_group" "security_group" {
         }
     }
 
-    egress{
+    egress {
         from_port = 0
         to_port = 0
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
     tags = {
-        Name = "Allow_All"
+        Name = "allow-all"
     }
 }
 
 resource "aws_instance" "ec2_instance" {
     ami = "ami-09c813fb71547fc4f"
-    instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.security_group.id]
+    instance_type = "t3.micro"
     tags = {
-        Name = "Terraform"
+        Name = "terraform"
     }
 }

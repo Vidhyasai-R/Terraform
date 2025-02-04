@@ -1,17 +1,25 @@
-variable "project" {
-  default = "expense"
+variable "ami_id"{
+    default = "ami-09c813fb71547fc4f"
 }
 
-variable "environment"{
-  
+variable "zone_id"{
+    default = "Z0986480176PROCGQFKND"
+}
+
+/* variable "instance_type"{
+    default = "t3.micro"
+} */
+
+variable "project" {
+    default = "expense"
+}
+
+variable "environment" {
+
 }
 
 variable "instance" {
-  default = [ "mysql", "backend", "frontend" ]
-}
-
-variable "zone_id" {
-    default = "Z0986480176PROCGQFKND"
+    default = ["mysql", "backend", "frontend"]
 }
 
 variable "domain_name" {
@@ -22,5 +30,29 @@ variable "common_tags" {
     type = map
     default = {
         Project = "expense"
+    }
+}
+
+variable "from_port" {
+    default = 22
+}
+
+variable "to_port" {
+    default = 22
+}
+
+variable "protocol" {
+    default = "tcp"
+}
+
+variable "cidr_blocks" {
+    type = list
+    default = ["0.0.0.0/0"]
+}
+
+variable "security_group_tags" {
+    type = map
+    default = {
+        Name = "Allow-All"
     }
 }
