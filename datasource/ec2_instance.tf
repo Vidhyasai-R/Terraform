@@ -23,6 +23,6 @@ resource "aws_instance" "ec2_instance" {
     vpc_security_group_ids = [aws_security_group.security_group.id]
     instance_type = local.instance_type
     tags = {
-        Name = "terraform"
+        Name = local.tag_name
     }
 }
