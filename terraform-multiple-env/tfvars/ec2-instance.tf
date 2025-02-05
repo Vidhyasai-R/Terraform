@@ -20,7 +20,7 @@ resource "aws_instance" "expense" {
     count = length(var.instance)
     ami = var.ami_id
     vpc_security_group_ids = [aws_security_group.security_group.id]
-    instance_type = var.environment == "prod" ? "t3.small" : "t3.micro"
+    instance_type = var.environment == "prod" ? "t3.micro" : "t2.micro"
     tags = merge(
         var.common_tags,
         {
